@@ -1,0 +1,14 @@
+{
+  "name": "Runner.JS",
+  "version": "1.0.0",
+  "description": "Simple framework for creating schedule commands or daemons/watchers",
+  "scripts": {
+    "start": "node ./bin/run"
+  },
+  "keywords": [
+    "essentia"
+  ],
+  "author": "Roman Loboda",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+const runner = require('../app/runner')
+
+runner(function (app, exit) {
+
+	app.on('booted', async function () {
+
+		await app.action('controllers/DefaultController', 'run');
+
+	});
+
+	exit();
+
+});
