@@ -13,6 +13,11 @@ Install dependencies:
 $ npm install
 ```
 
+Create and edit your config file:
+```
+$ cp config.example.js config.js
+```
+
 ## Usage
 Create your bin file in */bin* folder, import runner function from *app/runner.js* and use this.
 
@@ -63,7 +68,8 @@ Also you can create your custom events and fire it:
 ```js
 	await app.event('booted', $yourData);
 ```
-#### Usin plugins
+
+#### Usin plugins:
 
 It is possible to easily create your own plugin. Just add your custom *[pluginname].js* file to plugins folder and enable it in *runner.conf.js*
 
