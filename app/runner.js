@@ -18,8 +18,9 @@ const registerPlugins = async function () {
         })
       })
     }
-    const registred = await plugin(installer)
-    return registred
+    await plugin(installer)
+
+    return true
   }
 
   for (let plugin of config.plugins) {
