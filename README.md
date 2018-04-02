@@ -45,14 +45,24 @@ To write the basic logic of your aplication it is recommended to use core events
 For using controllers, make sure you have **actions** plugin in */plugins* folder and it is enabled in *runner.conf.js*
 
 ```js
-  app.on('booted', function (data, next) {
+  	app.on('booted', function (data, next) {
   
-    app.action('controllers/DefaultController', 'run').then(status => {
-		next();
+    	app.action('controllers/DefaultController', 'run').then(status => {
+			next();
+		});
+
+  	});
+
+```
+
+Or you can use this async:
+
+```js
+	app.on('booted', async function () {
+
+		await app.action('controllers/DefaultController', 'run');
+
 	});
-
-  });
-
 ```
 
 #### Using events:
