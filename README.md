@@ -24,45 +24,45 @@ Create your bin file in */bin* folder, import runner function from *app/runner.j
 To write the basic logic of your aplication it is recommended to use core events or your custom events.
 
 ```js
-	#!/usr/bin/env node
-    const runner = require('../app/runner')
+#!/usr/bin/env node
+const runner = require('../app/runner')
 
-    runner(function (app, exit) {
+runner(function (app, exit) {
 
-        app.on('booted', function (data, next) {
-			
-            console.log('Booted');
-            next();
+  app.on('booted', function (data, next) {
+    
+    console.log('Booted');
+      next();
 
-        });
+  });
 
-        exit();
+  exit();
 
-    });
+});
 ```
 
 #### Using controllers:
 For using controllers, make sure you have **actions** plugin in */plugins* folder and it is enabled in *runner.conf.js*
 
 ```js
-  	app.on('booted', function (data, next) {
-  
-    	app.action('controllers/DefaultController', 'run').then(status => {
-			next();
-		});
+app.on('booted', function (data, next) {
 
-  	});
+  app.action('controllers/DefaultController', 'run').then(status => {
+    next();
+  });
+
+});
 
 ```
 
 Or you can use this async:
 
 ```js
-	app.on('booted', async function () {
+app.on('booted', async function () {
 
-		await app.action('controllers/DefaultController', 'run');
+  await app.action('controllers/DefaultController', 'run');
 
-	});
+});
 ```
 
 #### Using events:
@@ -76,7 +76,7 @@ It is available system events:
 Also you can create your custom events and fire it:
 
 ```js
-	await app.event('booted', $yourData);
+await app.event('booted', $yourData);
 ```
 
 #### Usin plugins:
@@ -86,15 +86,15 @@ It is possible to easily create your own plugin. Just add your custom *[pluginna
 ```js
 module.exports = function (install) {
 
-	return install(function (app, next) {
+  return install(function (app, next) {
 
-		app.sayHello = function () {
-			console.log('Hello world');
-		};
-		
-		next();
+    app.sayHello = function () {
+      console.log('Hello world');
+    };
+    
+    next();
 
-	});
+  });
 
 }
 ```
