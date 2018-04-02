@@ -1,39 +1,33 @@
-const mysql = require('mysql');
+const mysql = require('mysql')
 
 module.exports = function (install) {
+  const createConnection = function (options) {
+    const connection = mysql.createConnection(options)
 
-	const createConnection = function (options) {
+    return new Promise((resolve, reject) => {
+      connection.connect(function (err) {
+        if (err) {
+          return reject(err)
+        }
+        return resolve(connection)
+      })
+    })
+  }
 
-		const connection  = mysql.createConnection(options);
+  const registerConnections = async function (app, config) {
+    for (let connection in config) {
+      app.db[connection] = await createConnection(config[connection])
+    }
+    return true
+  }
 
-		return new Promise((resolve, reject) => {
+  return install(function (app, next) {
+    app.db = {}
 
-			connection.connect(function (err) {
-				if (err) {
-					return reject(err);
-				}
-				return resolve(connection);
-			});
-
-		});
-	};
-
-	const registerConnections = async function (app, config) {
-		for (connection in config) {
-			app.db[connection] = await createConnection(config[connection]);
-		}
-		return true;
-	};
-
-	return install(function (app, next) {
-
-		app.db = {};
-
-		registerConnections(app, app.config.database).then(() => {
-			next();
-		}).catch(err => {
-			throw err;
-		});
-	});
-
+    registerConnections(app, app.config.database).then(() => {
+      next()
+    }).catch(err => {
+      throw err
+    })
+  })
 }

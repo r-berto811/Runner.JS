@@ -1,11 +1,7 @@
 module.exports = {
 
-	async run () {
-
-		console.log('Hello World!');
-
-		return;
-
-	}
+  async run () {
+    console.log('Hello World!')
+  }
 
 }

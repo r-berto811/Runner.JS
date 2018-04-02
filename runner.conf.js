@@ -1,9 +1,9 @@
 module.exports = {
 
-	plugins: [
-		'plugins/actions',
-		// 'plugins/database',
-		// 'plugins/memcached',
-	],
+  plugins: [
+    'plugins/actions'
+    // 'plugins/database',
+    // 'plugins/memcached',
+  ]
 
 }
