@@ -13,10 +13,15 @@ module.exports = function (install) {
 
       controller = require(path.resolve(controller))
 
+      Object.assign(obj, controller)
+
       method = method || 'run'
       obj[method] = controller[method]
+      obj['boot'] = controller['boot'] ? controller['boot'] : function () { }
+      obj['boot']()
 
       return obj[method]()
+      
     }
 
     app.action = function (controller, method) {
